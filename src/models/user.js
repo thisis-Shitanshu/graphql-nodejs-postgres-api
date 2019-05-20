@@ -36,7 +36,7 @@ const user = (sequelize, DataTypes) =>{
         User.hasMany(models.Message, { onDelete: 'CASCADE' });
     };
 
-    User.findByLogin = async login => {
+    User.findByLogIn = async login => {
         let user = await User.findOne({
             where: { username: login }
         });
