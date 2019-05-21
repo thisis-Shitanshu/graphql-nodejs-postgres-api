@@ -11,7 +11,11 @@ export default {
       return await models.Message.findAll();
     },
     message: async (parent, { id }, { models }) => {
-      return await models.Message.findById(id);
+      return await models.Message.findOne({
+        where: {
+          id: id
+        }
+      });
     },
   },
   
@@ -45,7 +49,11 @@ export default {
 
   Message: {
     user: async (message, args, { models }) => {
-      return await models.User.findById(message.userId);
+      return await models.User.findOne({
+        where: {
+          id: message.userId
+        }
+      });
     },
   },
 };
