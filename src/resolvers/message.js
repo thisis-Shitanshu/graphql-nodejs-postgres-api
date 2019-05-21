@@ -5,6 +5,7 @@ import {
   isAuthenticated, 
   isMessageOwner 
 } from './authorization';
+import pubsub, { EVENTS } from '../subscription';
 
 const toCursorHash = string => Buffer.from(string).toString('base64');
 
@@ -61,14 +62,23 @@ export default {
         { text }, 
         { me, models }
       ) => {
-  
         try {
-          return await models.Message.create({
+
+          const message = await models.Message.create({
             text,
             userId: me.id,
           });
+
+          pubsub.publish(EVENTS.MESSAGE.CREATED, {
+            messageCreated: { message },
+          });
+
+          return message;
+
         } catch (error) {
+          
           throw new Error(error);
+        
         }
       }
     ),
@@ -90,4 +100,10 @@ export default {
       });
     },
   },
+
+  Subscription: {
+    messageCreated: {
+      subscribe: () => pubsub.asyncIterator(EVENTS.MESSAGE.CREATED)
+    }
+  }
 };
