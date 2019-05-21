@@ -7,6 +7,10 @@ GraphQL server project that implements:
     - Different pagination strategies
     - Real-time abilities due to subscriptions.
 
+## Additional Spec:
+- Testing with Mocha & Chai
+- Batching and Caching with Data Loader
+
 ## Working with Postgres:
 - After installing Postgres on your local machine.
     ```
