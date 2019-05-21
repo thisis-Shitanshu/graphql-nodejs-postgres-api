@@ -92,12 +92,8 @@ export default {
   },
 
   Message: {
-    user: async (message, args, { models }) => {
-      return await models.User.findOne({
-        where: {
-          id: message.userId
-        }
-      });
+    user: async (message, args, { loaders }) => {
+      return await loaders.user.load(message.userId);
     },
   },
 

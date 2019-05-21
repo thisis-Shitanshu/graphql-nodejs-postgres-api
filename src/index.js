@@ -3,11 +3,14 @@ import http from 'http';
 import cors from 'cors';
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import DataLoader from 'dataloader';
 import { 
   ApolloServer, 
   AuthenticationError 
 } from 'apollo-server-express';
 
+
+import loader from './loaders';
 import schema from './schema';
 import resolvers from './resolvers';
 import models,{ sequelize } from './models';
@@ -48,7 +51,10 @@ const server = new ApolloServer({
   context: async ({ req, connection }) => {
     if (connection) {
       return {
-        models
+        models,
+        loader: {
+          user: new DataLoader(keys => loader.user.batchUsers(keys, models))
+        }
       }
     }
 
@@ -58,7 +64,10 @@ const server = new ApolloServer({
       return {
         models,
         me,
-        secret: process.env.SECRET
+        secret: process.env.SECRET,
+        loader: {
+          user: new DataLoader(keys => loader.user.batchUsers(keys, models))
+        }
       }
     }
   }
