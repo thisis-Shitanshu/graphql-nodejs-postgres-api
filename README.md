@@ -1,6 +1,6 @@
 # Server-side architecture: GraphQL and Apollo Server.
 
-![GraphQL](./graphql.png | height=150)
+![GraphQL](/graphql.png | height=150)
 
 GraphQL server project that implements:
 - Authentication
