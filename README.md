@@ -32,3 +32,5 @@ $ heroku create graphql-server-node-js
 // Create DB on free tier and add the DATABASE_URL to config.
 $ heroku addons:create heroku-postgresql:hobby-dev
 ```
+ 
+- Visit the url extended by **/graphql** to access the playground.
