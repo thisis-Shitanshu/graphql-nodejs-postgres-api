@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import http from 'http';
 import cors from 'cors';
 import express from 'express';
@@ -7,7 +8,6 @@ import {
   ApolloServer, 
   AuthenticationError 
 } from 'apollo-server-express';
-import 'dotenv/config';
 
 
 import loader from './loaders';
@@ -84,7 +84,7 @@ const eraseDatabaseOnSync = true;
 
 const isTest = !!process.env.TEST_DATABASE;
 const isProduction = !!process.env.DATABASE_URL;
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 // For seed in production:
 //sequelize.sync({ force: isTest || isProduction })
