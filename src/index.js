@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import http from 'http';
 import cors from 'cors';
 import express from 'express';
@@ -8,6 +7,7 @@ import {
   ApolloServer, 
   AuthenticationError 
 } from 'apollo-server-express';
+import 'dotenv/config';
 
 
 import loader from './loaders';
