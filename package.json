@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
     "test-server": "yarn start TEST_DATABASE=mytestdatabase",
     "test": "mocha --require @babel/register 'src/**/*.spec.js'",
     "heroku-postbuild": "npm install --production"
